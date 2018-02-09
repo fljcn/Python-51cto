@@ -22,7 +22,7 @@ count = 0
 count1 = 0
 
 while True:
-    username = input('请输入用户名1:')
+    username = input('请输入用户名:')
     if username in lock_user:      #username在lock_user列表中
        print('该用户已被锁定')     #打印“该用户已被锁定'”
        exit(0)                      # 无错误退出
