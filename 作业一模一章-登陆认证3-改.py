@@ -6,18 +6,16 @@ user_info = {
 'user1': {'password': 'user1.1'},
 'user2': {'password': 'user2.2'},
  }    #建立用户和密码字典
-if not os.path.isfile('black_user' ):   # 判断记录锁定文件不存在
-    f = open('black_user','w')    #不存在 新建一个‘black_user’文件
-    f = open('black_user')         #读取black_user 文件,防止上一条以只写方式打开文件
-else:
-    f = open('black_user')          #如果文件存在直接打开
+if not os.path.isfile('black_user.txt' ):   # 判断记录锁定文件不存在
+    f = open('black_user.txt','w')    #不存在 新建一个‘black_user’文件
+f = open('black_user.txt')          #如果文件存在直接打开
 user = f.readlines()     #以行的方式读取，返回的是一个字符串对象，赋值给 user
+f.close()                         # 关闭lock_user文件
 lock_user = []            #新建锁定用户列表
 for i in user:          #把black_user中的用户追加到lock_user列表中
     i = i.strip()
     lock_user.append(i)
 print('锁定用户:',lock_user)     #显示哪些用户被锁定
-f.close()                         # 关闭lock_user文件
 count = 0
 count1 = 0
 
@@ -43,7 +41,7 @@ while True:
                 continue               #中断本步循环，跳到下一步循环
         # if count1 == 3:
         print('密码输入错3次，该用户将被锁定')
-        f = open('black_user','a')          #打开文件black_user，并允许追加内容
+        f = open('black_user.txt','a')          #打开文件black_user，并允许追加内容
         f.write('%s\n' % (username))        #把username写入到black_user文件
         f.close()
         exit(0)
