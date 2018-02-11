@@ -24,28 +24,28 @@ print ('已被锁定用户名单：',lock_user)
 
 count = 0
 count1 = 0
-exit_flah = False
-while not exit_flah:
+while True:
     #输入用户名，并验证用户名是否正在列表lock_user中，如果在提示“已被锁定”，退出
     _username = input('请输入用户名：')
     if _username in lock_user:
         print ('已被锁定！')
-        break
+        exit(0)
 
     #判断输入的用户名是否在字典username中，如果没有，3次重新输入机会
     if not _username in username:
         print ('请输入正确用户名，共3次机会：')
         if count == 2:
             print ("已输入3次,退出程序！")
-            break
+            # exit_flag = True
+            exit(0)
         count += 1
     else:
-       while count1<=3:
+       while True:
             #输入密码，并判断是否正确，如果不正确输入3次，将被锁定
             _password = input('请输入用户密码：')
             if _password == username[_username] ['password']:
                 print ('欢迎 %s 用户！' % (_username))
-                break
+                exit(0)
             else:
                 print ('密码输入错误')
             if count1 == 2:
@@ -53,4 +53,5 @@ while not exit_flah:
                 f=open('black_user.txt','a')
                 f.write('%s\n' % (_username))
                 f.close()
+                exit(0)
             count1 += 1
