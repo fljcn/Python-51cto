@@ -71,20 +71,20 @@ data = {
 }
 exit_flag = False#标志位,只要不为True,循环会一直执行
 while not exit_flag:
-    for i in data:#循环打印data
-        print(i)
-    choice = input("请输入>>>")
+    for i1 in data:#循环打印idata
+        print('i1=',i1)      #打印出一级 省
+    choice = input("请输入>>>")   #输入省一级
     if choice in data:#判断choice是否在data中
         while not exit_flag:
             for i2 in data[choice]:
-                print(i2)
+                print('i2',i2)
             choice2 = input("请输入>>>")
             if choice2 in data[choice]:
                 while not exit_flag:
                     for i3 in data[choice][choice2]:
-                        print(i3)
+                        print('i3',i3)
                     choice3 = input("请输入>>>")
-                    if choice3 in data[choice][choice2]:
+                    if choice3 in data[choice][choice2]:    #
                         for i4 in data[choice][choice2][choice3]:
                             print(i4)
                         choice4 = input("最后一层,请输入b返回或输入q结束>>>")
