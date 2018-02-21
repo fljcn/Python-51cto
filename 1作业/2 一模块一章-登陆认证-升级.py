@@ -63,7 +63,7 @@ while True:
             if count1 == 2:
                 print ("已输入3次，即将锁定!")
                 f=open('black_user.txt','a')
-                f.write('%s\n' % (_username))
+                f.write(_username+'\n')
                 f.close()
                 exit(0)
             count1 += 1

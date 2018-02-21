@@ -76,17 +76,17 @@ while not exit_flag:
     choice = input("请输入>>>")   #输入省一级
     if choice in data:#判断choice是否在data中
         while not exit_flag:
-            for i2 in data[choice]:
+            for i2 in data[choice]: #打印第二级
                 print('i2',i2)
             choice2 = input("请输入>>>")
             if choice2 in data[choice]:
                 while not exit_flag:
                     for i3 in data[choice][choice2]:
-                        print('i3',i3)
+                        print('i3',i3)          #打印第三级
                     choice3 = input("请输入>>>")
                     if choice3 in data[choice][choice2]:    #
                         for i4 in data[choice][choice2][choice3]:
-                            print(i4)
+                            print('i4',i4)      #打印第四级
                         choice4 = input("最后一层,请输入b返回或输入q结束>>>")
                         if choice4 == 'b':
                             pass#直接跳过,如果不加pass的话会报错
