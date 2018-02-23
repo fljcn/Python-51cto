@@ -88,6 +88,6 @@ while True:
             for index,k in enumerate(shopp_car):    #打印商品清单
                 print(index, ' ', (shopp_car[index]).get('name'), "  ", (shopp_car[index]).get('price'))
             print('已选商品总金额： %s元 '% (shopp_car_price) )
-            print('\033[1;37;44m','工资余额： %s元' % (balance),'\033[0m')    #高亮显示 本次购物后余额
+            print('\033[1;37;44m','余额： %s元' % (balance),'\033[0m')    #高亮显示 本次购物后余额
             break
     break
