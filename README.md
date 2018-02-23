@@ -1,8 +1,8 @@
 # Python全栈开发工程师【微职位】--学习
 * 主要用于作业完成、练习编程
 ### 目录
-- [作业](#作业)
-- [练习](#练习)
+- [作业](https://github.com/fljcn/Python-51cto/tree/master/1%E4%BD%9C%E4%B8%9A)
+- [练习]
 
 ### 1 作业
 * 学习笔记    一模块笔记没有使用markdown，以后注意使用！
