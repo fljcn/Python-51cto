@@ -14,8 +14,8 @@ user = 'user1'
 password = 'user1.1'
 count = 0
 while count < 3:
-    _user = input('请输入用户名：')
-    _password = input("请输入密码：")
+    _user = input('请输入用户名：').strip()
+    _password = input("请输入密码：").strip()
     if _user == user and _password == password:
         print('-----欢迎%s登录系统!------' % (user))
         break

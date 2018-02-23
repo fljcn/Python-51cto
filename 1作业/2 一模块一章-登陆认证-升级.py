@@ -38,7 +38,7 @@ count = 0
 count1 = 0
 while True:
     #输入用户名，并验证用户名是否正在列表lock_user中，如果在提示“已被锁定”，退出
-    _username = input('请输入用户名：')
+    _username = input('请输入用户名：').strip()
     if _username in lock_user:
         print ('已被锁定！')
         exit(0)
@@ -54,7 +54,7 @@ while True:
     else:
        while True:
             #输入密码，并判断是否正确，如果不正确输入3次，将被锁定
-            _password = input('请输入用户密码：')
+            _password = input('请输入用户密码：').strip()
             if _password == username[_username] ['password']:
                 print ('欢迎 %s 用户！' % (_username))
                 exit(0)

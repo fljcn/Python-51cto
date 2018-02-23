@@ -10,7 +10,7 @@
 # 思路：
 # 1、默认 用户名、密码，上次消费的余额都存在一个列表中。
 # 2、之前的消费记录也存在一个字典中。
-
+# 3、步骤：一是输入用户名，验证密码，显示余额。二是显示上次消费记录。三是继续购物。
 goods = [
     {"name":
          "电脑", "price": 1999},
@@ -22,13 +22,13 @@ goods = [
          "美女", "price": 998},
 ]
 
-user_info =[
+user_info =[      #用户信息和上次消费余额
     {'user':'user1','password':'user1.1','balance':12991},
     {'user':'user2','password':'user2.2','balance':13982},
-    {'user': 'user2', 'password': 'user2.2', 'balance': 12003},
+    {'user': 'user3', 'password': 'user3.3', 'balance': 12003},
      ]
 #
-xiaofei_list={
+old_shop_list={              #上次消费清单
     'user1':
          [{'name': '电脑', 'price': 1999}, {'name': '鼠标', 'price': 10}],
     'user2':
@@ -37,13 +37,36 @@ xiaofei_list={
          [{'name': '电脑', 'price': 1999}, {'name': '美女', 'price': 998}]
      }
 
-_user1 = input('请输入用户名：')
-aa = 0
-print(xiaofei_list[_user1])
-for index, k in enumerate(xiaofei_list[_user1]):  # 打印
-    print(index, ' ', (xiaofei_list[_user1][index]).get('name'), "  ", (xiaofei_list[_user1][index]).get('price'))
-    aa= aa+(xiaofei_list[_user1][index]).get('price')
-print ('aa=',aa)
 
-print (type(user_info))
-print (user_info[1]['password'])
+# print (user_info[0]['user'],user_info[0]['password'],user_info[0]['balance'])
+
+count1 = 0
+while True:
+    _user = input('请输入用户名：').strip()
+    _password = input('请输入密码：').strip()
+    for  index,k in enumerate(user_info):
+        if _user == user_info[index]['user'] and _password == user_info[index]['password']:
+            print ('当前账户余额：',user_info[index]['balance'],'元')
+            break
+    print('用户名密码不正确，三次机会')
+        # break
+
+    #
+    #
+    #     break
+    # count1 += 1
+print ('退出')
+    # exit(0)
+
+
+#
+# _user1 = input('请输入用户名：')
+# aa = 0
+# print(xiaofei_list[_user1])
+# for index, k in enumerate(xiaofei_list[_user1]):  # 打印
+#     print(index, ' ', (xiaofei_list[_user1][index]).get('name'), "  ", (xiaofei_list[_user1][index]).get('price'))
+#     aa= aa+(xiaofei_list[_user1][index]).get('price')
+# print ('aa=',aa)
+#
+# print (type(user_info))
+# print (user_info[1]['password'])

@@ -39,7 +39,6 @@ while True:
                 print("余额不足")
     elif choice == 'q':     #输入q 退出，显示 已选择商品清单
         print('\n----------已选择商品----------')
-        print (shopp_car)
         for index,k in enumerate(shopp_car):    #打印
             print(index, ' ', (shopp_car[index]).get('name'), "  ", (shopp_car[index]).get('price'))
         print('已选商品总金额： %s元 '% (shopp_car_price) )
