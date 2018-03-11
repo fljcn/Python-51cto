@@ -1,13 +1,21 @@
-def stu_register(name,age,course):
-    print(name,age,course)
-    # if age > 22:
-    #     return True
-    # else:
-    #     return False
-    # return 888      #后面的语句将不执行
-    return  name,age    #返回列表
-    # return [name,age]     #返回列表
-    print (111)
 
-status = stu_register('Peiqi',29,'安保')
-print ('status:',status)
+info = ['Name','Age','Job','Dept','Phone']
+account1=[]
+
+with open('account.txt',encoding='utf-8') as file :
+    account = file.readlines()
+    print(account)
+    for i in account:
+        i = i.strip()
+        account1.append(i)
+print('account0',account1[0])
+print('account1',account1[1])
+print('account2',account1[2])
+print('Name',account1[0])
+
+
+
+# def _print(abc,sep=' '):
+#     print()
+
+
