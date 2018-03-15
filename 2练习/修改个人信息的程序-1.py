@@ -33,13 +33,15 @@ def save_back_to_file(account_dic):
     :param account_dic:
     :return:
     """
-    f.seek(0) #回到文件头
-    f.truncate() #清空原文件
-    for k in account_dic:
-        row = ",".join(account_dic[k])
-        f.write("%s\n"%row)
+    with open('account.txt', 'r+', encoding='utf-8') as f:
+        f.seek(0) #回到文件头
+        f.truncate() #清空原文件
+        for k in account_dic:
+            row = ",".join(account_dic[k])
+            print('row',row)
+            f.write("%s\n"%row)
 
-    f.flush()
+        f.flush()
 
 
 def change_personal_info(account_dic,username):
@@ -56,7 +58,7 @@ def change_personal_info(account_dic,username):
     print("person data:",person_data)
     column_names = ['Username','Password','Name','Age','Job','Dept','Phone']   #对应60行语句
     for index,k in enumerate(person_data):
-        if index >1: #0 is username and 1 is password
+        if index >1: #0 is username and 1 is password    跳过前两过字段
             print("%s.  %s: %s" %( index, column_names[index],k) )    #打印修改列表
 
     choice = input("[select column id to change]:").strip()
@@ -76,12 +78,20 @@ def change_personal_info(account_dic,username):
 
 
 
-account_file = "account.txt"
-f = open(account_file,"r+",encoding='utf-8')
-raw_data = f.readlines()
-accounts = {}
+# account_file = "account.txt"
+# f = open(account_file,"r+",encoding='utf-8')
+# raw_data = f.readlines()
+# accounts = {}
+# print('raw_data:',raw_data)
+# #把账户数据从文件里读书来，变成dict,这样后面就好查询了
+
+
+with open('account.txt','r+',encoding='utf-8') as f:
+    raw_data = f.readlines()
 print('raw_data:',raw_data)
-#把账户数据从文件里读书来，变成dict,这样后面就好查询了
+
+accounts = {}
+
 for line in raw_data:
 
     line = line.strip()
