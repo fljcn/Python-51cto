@@ -39,7 +39,7 @@ def save_back_to_file(account_dic):
         for k in account_dic:
             row = ",".join(account_dic[k])
             print('row',row)
-            f.write("%s\n"%row)
+            f.write("%s\n"%(row))
 
         f.flush()
 
