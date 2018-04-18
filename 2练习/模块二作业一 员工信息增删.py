@@ -18,8 +18,6 @@ def sql_parse(sql):    #sql解析: insert delete update select
     print('sql str is: %s' %sql)
     sql_l=sql.split(' ')
     func=sql_l[0]
-    print('sql_l str is: %s' %sql_l)
-    print('func str is: %s' %func)
     res=' '
 
     if func in parse_func:
@@ -82,6 +80,43 @@ def handle_parse(sql_l,sql_dic):
     :return:
     '''
     print('sql_l is \033[41;1m %s \033[0m \n sql_dic is \033[42;1m %s \033[0m ' % (sql_l,sql_dic))
+    tag=False
+    for item in sql_l:
+        if tag and item in sql_dic:
+            tag=False
+        if not tag and item in sql_dic:
+            tag = True
+            key = item
+            # print('Item1:\033[41;1m%s \033[0m' %item)
+
+            continue
+        if tag:
+            sql_dic[key].append(item)    #添加到 sql_dic
+        # print ('Item2:',item)
+    print('from in the handle_parse sql_dic is \033[43;1m %s \033[0m' %sql_dic)
+
+    if sql_dic.get('where'):
+        sql_dic['where']=where_parse(sql_dic.get('where'))    #['id>4','and','id<10']
+    return sql_dic
+
+def where_parse(where_l):    #['id>', '4', 'and', 'id', '<10']  -->  ['id>4','and','id<10']
+    res= []
+    key=['and','or','not']
+    char=' '
+    for i in where_l:
+        if len(i) == 0:continue
+        if i in key:
+            # i为key当中存放的逻辑运算符
+            if len(char) != 0:
+                res.append(char)
+                res.append(i)
+                char=' '
+        else:
+            char+=i   #'id>4'
+    else:
+        res.append(char)
+    print('from in the where_parse res is:\033[41;1m %s \033[0m' %res)
+    return res
 
 
 # 第二部分：sql执行
