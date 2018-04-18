@@ -93,16 +93,16 @@ def handle_parse(sql_l,sql_dic):
         if tag:
             sql_dic[key].append(item)    #添加到 sql_dic
         # print ('Item2:',item)
-    print('from in the handle_parse sql_dic is \033[43;1m %s \033[0m' %sql_dic)
-
     if sql_dic.get('where'):
         sql_dic['where']=where_parse(sql_dic.get('where'))    #['id>4','and','id<10']
+    print('from in the handle_parse sql_dic is \033[43;1m %s \033[0m' % sql_dic)
     return sql_dic
+
 
 def where_parse(where_l):    #['id>', '4', 'and', 'id', '<10']  -->  ['id>4','and','id<10']
     res= []
     key=['and','or','not']
-    char=' '
+    char=''
     for i in where_l:
         if len(i) == 0:continue
         if i in key:
@@ -110,7 +110,7 @@ def where_parse(where_l):    #['id>', '4', 'and', 'id', '<10']  -->  ['id>4','an
             if len(char) != 0:
                 res.append(char)
                 res.append(i)
-                char=' '
+                char=''
         else:
             char+=i   #'id>4'
     else:
@@ -126,7 +126,9 @@ def sql_action(sql_dic):
     :param sql_dic:
     :return:
     '''
-    pass
+    print ('sal_action sql_dic:',sql_dic)
+    # print (type(sql_dic))
+    # return  sql_dic.get('func')(sql_dic )
 
 def insert(sql_dic):
     pass
@@ -138,8 +140,17 @@ def update(sql_dic):
     pass
 
 def select(sql_dic):
-    pass
+    print('from select sql_dic is: %s' %sql_dic)
+    db,table = sql_dic.get('from')[0].split('.')
 
+    fh=open("%s%s" %(db,table),'r',encoding='utf-8')
+    # second:where
+    filter_res=where_action(fh,sql_dic.get('where'))
+    # third:limit
+    # lase:select
+
+def where_action(fh,where_l):
+    pass
 
 
 if __name__ == '__main__':
@@ -152,5 +163,6 @@ if __name__ == '__main__':
         sql_dic=sql_parse(sql)
         # print('main res is %s' %sql_dic)
         if len(sql_dic) == 0:continue
+
         #sql执行
         sql_action(sql_dic)
