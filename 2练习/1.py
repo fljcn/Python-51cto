@@ -1,135 +1,47 @@
-'''
-作业思路：
-sql = input ('sql> ').strip()
+#!/usr/bin/env python
+# _*_coding:utf-8 _*_
+# __author__ = Feng
 
-select id,name from db1.emp where id>10 limit 3
+user_status = False  # 用户登录了就把这个改成True
 
-用户输入 字符串 解释 结构化数据 字典
+def login(func):
 
-第一部分： sql解析
-sql_dic={
-    'select':["id,name"],
-    'from':["db1.emp"],
-    'where':["id>10"],
-    'limit':["3"],
-}
+    def inner():
+        _username = "1"  # 假装这是DB里存的用户信息
+        _password = "11"  # 假装这是DB里存的用户信息
+        global user_status
 
-第二部分： res=sql执行 sql(sql_dic)
+        if user_status == False:
+            username = input("user:").strip()
+            password = input("pasword:").strip()
 
- 主函数
+            if username == _username and password == _password:
+                print("welcome login....")
+                user_status = True
+            else:
+                print("wrong username or password!")
+        else:
+            print("用户已登录，验证通过...")
 
-1. sql=input('sql> ').strip()
-2.sql_dic=sql解析（sql）
-3.res=sql执行（sql_dic）
-
-4.格式化输出res
-
-'''
-#_*_coding:utf-8_*_
-# 第一部分： sql解析
-def sql_parse(sql):    #sql解析: insert delete update select
-    '''
-    把sql字符串切分，提取命令信息，分发给具体的解析函数去解析
-    :param sql:
-    :return:
-    '''
-    parse_func={
-        'insert':insert_parse,
-        'delete':delete_parse,
-        'update':update_parse,
-        'select':select_parse,
-    }
-    print('sql str is: %s' %sql)
-    sql_l=sql.split(' ')
-    func=sql_l[0]
-    print('sql_l str is: %s' %sql_l)
-    print('func str is: %s' %func)
-    res=' '
-
-    if func in parse_func:
-        parse_func[func](sql_l)
-
-    return res
-
-def insert_parse(sql_l):
-    '''
-    定义insert语句的语法结构，执行sql解析操作，返回sql_dic
-
-    :param sql:
-    :return:
-    '''
-    pass
-
-def delete_parse(sql_l):
-    '''
-    定义deletet语句的语法结构，执行sql解析操作，返回sql_dic
+        if user_status:
+            func()
+    return inner
 
 
-    :param sql:
-    :return:
-    '''
-    pass
-
-def update_parse(sql_l):
-    '''
-        定义update语句的语法结构，执行sql解析操作，返回sql_dic
-
-    :param sql:
-    :return:
-    '''
-    pass
-
-def select_parse(sql_l):
-    '''
-        定义select语句的语法结构，执行sql解析操作，返回sql_dic
-
-    :param sql:
-    :return:
-    '''
-    print('from in the select_parse \033[41;1m %s\033[0m' %sql_l)
-    pass
+def home():
+    print("---首页----")
 
 
-def handle_parse(sql_l,sql_dic):
-    '''
-    执行sql解析操作，返回sql_dic
-
-    :param sql_l:
-    :param sql_dic:
-    :return:
-    '''
-
-# 第二部分：sql执行
-def sql_action(sql_dic):
-    '''
-    从字典sql_dic提取命令，分发给具体的命令执行函数去执行
-    :param sql_dic:
-    :return:
-    '''
-    pass
-
-def insert(sql_dic):
-    pass
-
-def delete(sql_dic):
-    pass
-
-def update(sql_dic):
-    pass
-
-def select(sql_dic):
-    pass
+def america():
+    print("----欧美专区----")
 
 
+def japan():
+    print("----日韩专区----")
 
-if __name__ == '__main__':
-    while True:
-        sql=input("sql> ").strip()
-        if sql == 'exit':break
-        if len(sql) == 0:continue
+@login
+def henan():
+    print("----河南专区----")
 
-        # sql解析
-        sql_dic=sql_parse(sql)
-
-        #sql执行
-        sql_action(sql_dic)
+# henan = login(henan)
+henan()
