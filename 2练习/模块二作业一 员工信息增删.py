@@ -18,11 +18,10 @@ def sql_parse(sql):    #sql解析: insert delete update select
     print('sql str is: %s' %sql)
     sql_l=sql.split(' ')
     func=sql_l[0]
-    res=' '
+    res=''
 
     if func in parse_func:
-        parse_func[func](sql_l)
-
+        res=parse_func[func](sql_l)     #少写res
     return res
 
 def insert_parse(sql_l):
@@ -68,7 +67,7 @@ def select_parse(sql_l):
         'where':[],     #filter条件
         'limit':[],     #limit条件
     }
-    return handle_parse(sql_l ,sql_dic)
+    return handle_parse(sql_l,sql_dic)
 
 
 def handle_parse(sql_l,sql_dic):
@@ -126,9 +125,7 @@ def sql_action(sql_dic):
     :param sql_dic:
     :return:
     '''
-    print ('sal_action sql_dic:',sql_dic)
-    # print (type(sql_dic))
-    # return  sql_dic.get('func')(sql_dic )
+    return  sql_dic.get('func')(sql_dic)
 
 def insert(sql_dic):
     pass
@@ -161,8 +158,13 @@ if __name__ == '__main__':
 
         # sql解析
         sql_dic=sql_parse(sql)
+        print('main:', type(sql_dic))
+
+
         # print('main res is %s' %sql_dic)
         if len(sql_dic) == 0:continue
 
+
         #sql执行
-        sql_action(sql_dic)
+        res=sql_action(sql_dic)
+
