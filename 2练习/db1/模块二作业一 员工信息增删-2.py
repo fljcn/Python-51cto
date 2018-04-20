@@ -106,7 +106,7 @@ def where_parse(where_l):    #['id>', '4', 'and', 'id', '<10']  -->  ['id>4','an
         if i in key:
             # i为key当中存放的逻辑运算符
             if len(char) != 0:
-                # char = three_parse(char)
+                char = three_parse(char)
                 res.append(char)  #char='id>4'--->['id','>','4']
                 res.append(i)
                 char=''
@@ -114,44 +114,44 @@ def where_parse(where_l):    #['id>', '4', 'and', 'id', '<10']  -->  ['id>4','an
 
             char+=i   #'id<=10'  #id<=10--->['id','<=','10']
     else:
-        # char = three_parse(char)
+        char = three_parse(char)
         res.append(char)
         # ['id>4', 'and', 'id<1=0']-->[['id','>','4'],'and',['id','<=','10']]
     print('from in the where_parse res is:\033[41;1m %s \033[0m' %res)
     return res
 
-# def three_parse(exp_str):
-#     # 'id<=10'-->['id','<=','10']
-#     key=['>','<','=']
-#     res = []
-#     char=''  #拼普通ID
-#     opt=''  #拼字符串<
-#     tag = False
-#     for i in exp_str:
-#         if i in key:
-#             tag = True
-#             if len(char) != 0:
-#                 res.append(char)
-#                 char=''
-#             opt+=i  #opt='<='
-#         if not tag:
-#             char+=i  #char='i'
-#
-#         if tag and i not in key:
-#             tag=False
-#             res.append(opt)
-#             opt=''
-#             char+=i  #char='1'
-#     else:
-#         res.append(char)
-#
-#     # 新增解析like的功能
-#     if len(res) == 1:
-#         res=res[0].split('like')
-#         res.insert(1,'like')
-#
-#     print('three_parse:',res)
-#     return res
+def three_parse(exp_str):
+    # 'id<=10'-->['id','<=','10']
+    key=['>','<','=']
+    res = []
+    char=''  #拼普通ID
+    opt=''  #拼字符串<
+    tag = False
+    for i in exp_str:
+        if i in key:
+            tag = True
+            if len(char) != 0:
+                res.append(char)
+                char=''
+            opt+=i  #opt='<='
+        if not tag:
+            char+=i  #char='i'
+
+        if tag and i not in key:
+            tag=False
+            res.append(opt)
+            opt=''
+            char+=i  #char='1'
+    else:
+        res.append(char)
+
+    # 新增解析like的功能
+    if len(res) == 1:
+        res=res[0].split('like')
+        res.insert(1,'like')
+
+    print('three_parse:',res)
+    return res
 
 
 
@@ -162,7 +162,7 @@ def sql_action(sql_dic):
     :param sql_dic:
     :return:
     '''
-    # return  sql_dic.get('func')(sql_dic)
+    return  sql_dic.get('func')(sql_dic)
 
 def insert(sql_dic):
     pass
@@ -174,15 +174,12 @@ def update(sql_dic):
     pass
 
 def select(sql_dic):
-    # print('from select sql_dic is: %s' %sql_dic)
-    # db,table = sql_dic.get('from')[0].split('.')
-    #
-    # fh=open("%s%s" %(db,table),'r',encoding='utf-8')
+    print('from select sql_dic is: %s' %sql_dic)
+    db,table = sql_dic.get('from')[0].split('.')
 
+    fh=open("%s%s" %(db,table),'r',encoding='utf-8')
     # second:where
-
-    # filter_res=where_action(fh,sql_dic.get('where'))
-
+    filter_res=where_action(fh,sql_dic.get('where'))
     # third:limit
     # lase:select
 
@@ -190,7 +187,7 @@ def where_action(fh,where_l):
     # id,name,age,phone,dept,enroll_data
     #2,Jack Wang,28,13451024608,HR,2015-01-07
     #id> 4 and id <10
-    # print ('in where_action:',where_l)
+    print ('in where_action:',where_l)
     pass
 
 

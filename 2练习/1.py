@@ -173,7 +173,6 @@ def sql_action(sql_dic):
     :param sql:
     :return:
     '''''
-    print('第二部分：', type(sql_dic))
     return sql_dic.get('func')(sql_dic)
 
 
