@@ -1,11 +1,17 @@
-#!/usr/bin/env python
-# _*_coding:utf-8 _*_
-# __author__ = Feng
+# data_file = open('staff_table.txt', 'r+', encoding='utf-8')
+# data = data_file.readlines()
+# data_file.close()
+# print('data:', data)
+# data_list = []
+# for i in data:
+#     data_list.append(str(i).strip().split(','))
+#     # data_list.append(str.strip(i).split(','))
+# print('data_list:', data_list)
 
-def js(n):
-    if n == 1:
-        return 1
-    else:
-        return n*js(n-1)
 
-print(js(5))
+with open('staff_table.txt', 'r+',encoding='utf-8') as staff_file:
+    data = staff_file.readlines()
+    data_list = []
+    for i in data:
+        data_list.append(str(i).strip().split(','))
+    print('data_list:',data_list)
