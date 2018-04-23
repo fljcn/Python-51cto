@@ -106,6 +106,9 @@ def update():
     elif value1 == cut4:
         count = 0
         for k in data_value:
+            print('k1:',k[1])
+            print(type(k[2]))
+
             if k[1] == "Alex Li":
                 k[2] = '25'
                 count += 1

@@ -18,7 +18,7 @@ def sql_parse(sql):
     parse_func = {
         'add': add_action,
         'del': del_action,
-        'update': update_action,
+        'UPDATE': update_action,
         'find': find_action,
     }
     sql_l = sql.split(' ')
@@ -34,16 +34,16 @@ def sql_parse(sql):
 
 def add_action(sql_l):
     data_value = table_info()
-    print(data_value)
     input_add=sql
     #截取 Alex Li,25,134435344,IT,2015-10-29
     input_add=input_add[16:]
     #把增加的语句转换成列表
     input_list=input_add.split(',')
     phone=[]
+    #把员工信息中的手机号提取到列表phone
     for k in data_value:
         phone.append(k[3])
-    print(phone)
+    #检查新输入的员工信息手机号是否在列表phone中
     if input_list[2] in phone:
         print('手机号已经存在！')
         exit()
@@ -62,10 +62,60 @@ def add_action(sql_l):
 
 
 def del_action(sql_l):
-    pass
+    data_value = table_info()
+    # input_add=sql
+    #取sql语句ID值
+    id_str=sql_l[4][3]
+    #匹配员工信息表中ID与sql语句ID相同的记录，并删除
+    for k in data_value:
+        if k[0] == id_str:
+            del k[:]
+    #删除空记录
+    del data_value[int(id_str)-1]
+    with open('staff_table.txt', 'w', encoding='utf-8') as staff_file:
+        for k in data_value:
+            k_str = ','.join(k)
+            staff_file.write(k_str)
+            staff_file.write('\n')
+    print('删除1条语句！')
+
 
 def update_action(sql_l):
+    data_value = table_info()
+    del_add = sql
+    #切分出sql语句中IT
+    it_cut=sql[49:51]
+    # 切分出sql语句中Alex Li
+    name_cut=sql[42:49]
+    if it_cut == 'IT':
+        count1 = 0
+        for k in data_value:
+            if k[4]==it_cut:
+                k[4]='Market'
+            count1+=1
+    elif name_cut=='Alex Li':
+        count2 = 0
+        for k in data_value:
+            if k[1] == name_cut:
+                k[2] = '25'
+            count2+=1
+    else:
+        print(data_value)
+
+
+
+
+
+
+    print('data_value:',data_value)
+    print('sql_l:', sql_l)
+    #取出sql语句条件 'dept="IT"'
+    dept_str=sql_l[5]
+
+
     pass
+
+
 
 def find_action(sql_l):
     data_value = table_info()
