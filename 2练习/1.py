@@ -92,28 +92,19 @@ def update_action(sql_l):
         for k in data_value:
             if k[4]==it_cut:
                 k[4]='Market'
-            count1+=1
+                count1+=1
     elif name_cut=='Alex Li':
-        count2 = 0
+        count1 = 0
         for k in data_value:
             if k[1] == name_cut:
                 k[2] = '25'
-            count2+=1
-    else:
-        print(data_value)
-
-
-
-
-
-
-    print('data_value:',data_value)
-    print('sql_l:', sql_l)
-    #取出sql语句条件 'dept="IT"'
-    dept_str=sql_l[5]
-
-
-    pass
+                count1+=1
+    with open('staff_table.txt','w',encoding='utf-8') as staff_file:
+        for k in data_value:
+            k_str=','.join(k)
+            staff_file.write(k_str)
+            staff_file.write('\n')
+    print('共修改了%s条语句！'%count1)
 
 
 
@@ -160,8 +151,8 @@ if __name__ == "__main__":
             2.新增信息 语法:add staff_table Alex Li,25,134435344,IT,2015-10-29
             3.删除信息 语法:del from staff where id=3
             4.修改信息 语法:
-                        UPDATE staff_table SET dept="Market" WHERE dept="IT" 
-                        UPDATE staff_table SET age=25 WHERE name="Alex Li")
+                        UPDATE staff_table SET dept="Market" WHERE dept="IT"
+                        UPDATE staff_table SET age=25 WHERE name="Alex Li"
             \033[42;0m 请在“sql>”后输入相应语法\033[0m
                          ''')
         sql=input('sql>').strip()
