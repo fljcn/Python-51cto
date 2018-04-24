@@ -28,10 +28,6 @@ def sql_parse(sql):
         res = parse_func[func](sql_l)
     return res
 
-
-    # print('sql_l:',sql_l)
-    # return sql_l
-
 def add_action(sql_l):
     data_value = table_info()
     input_add=sql
@@ -60,7 +56,6 @@ def add_action(sql_l):
         staff_file.write(input_list_str)
     print('插入1条新语句！')
 
-
 def del_action(sql_l):
     data_value = table_info()
     # input_add=sql
@@ -78,7 +73,6 @@ def del_action(sql_l):
             staff_file.write(k_str)
             staff_file.write('\n')
     print('删除1条语句！')
-
 
 def update_action(sql_l):
     data_value = table_info()
@@ -105,8 +99,6 @@ def update_action(sql_l):
             staff_file.write(k_str)
             staff_file.write('\n')
     print('共修改了%s条语句！'%count1)
-
-
 
 def find_action(sql_l):
     data_value = table_info()
@@ -137,8 +129,6 @@ def find_action(sql_l):
                 print(k[1], k[2])
                 count += 1
         print('查询到%s条语句！' % count)
-
-
 
 if __name__ == "__main__":
     while True:

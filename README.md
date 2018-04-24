@@ -7,6 +7,7 @@
 ### 1 作业
 * 学习笔记    一模块笔记没有使用markdown，以后注意使用！
     * [一模块](https://note.youdao.com/share/?id=a7e4cacb591850cf284c88545eb88b4d&type=notebook#/)
+    * [二模块](https://note.youdao.com/share/?id=a7e4cacb591850cf284c88545eb88b4d&type=notebook#/C650EB3E1846420B924C8C772E65C735)
 * 流程图    
     * [1 一模块一章-登陆认证-流程图](https://github.com/fljcn/Python-51cto/blob/master/1%E4%BD%9C%E4%B8%9A/1%20%E4%B8%80%E6%A8%A1%E5%9D%97%E4%B8%80%E7%AB%A0-%E7%99%BB%E9%99%86%E8%AE%A4%E8%AF%81-%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg)
     * [2 一模块一章-登陆认证-升级-流程图](https://github.com/fljcn/Python-51cto/blob/master/1%E4%BD%9C%E4%B8%9A/2%20%E4%B8%80%E6%A8%A1%E5%9D%97%E4%B8%80%E7%AB%A0-%E7%99%BB%E9%99%86%E8%AE%A4%E8%AF%81-%E5%8D%87%E7%BA%A7-%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg)
