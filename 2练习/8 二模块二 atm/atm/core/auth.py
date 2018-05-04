@@ -54,8 +54,8 @@ def acc_auth2(account,password):
     :return: if passed the authentication , retun the account object, otherwise ,return None
 
     '''
-    db_api = db_handler.db_handler()
-    data = db_api("select * from accounts where account=%s" % account)
+    db_api = db_handler.db_handler()    #连接数据库
+    data = db_api("select * from accounts where account=%s" % account)  #执行sql
 
 
     if data['password'] == password:
@@ -75,8 +75,8 @@ def acc_login(user_data,log_obj):
     '''
     retry_count = 0
     while user_data['is_authenticated'] is not True and retry_count < 3 :
-        account = input("\033[32;1maccount:\033[0m").strip()
-        password = input("\033[32;1mpassword:\033[0m").strip()
+        account = input("\033[32;1m account:\033[0m").strip()
+        password = input("\033[32;1m password:\033[0m").strip()
         auth = acc_auth2(account, password)
         if auth: #not None means passed the authentication
             user_data['is_authenticated'] = True

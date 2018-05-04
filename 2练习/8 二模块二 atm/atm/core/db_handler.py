@@ -12,7 +12,7 @@ def file_db_handle(conn_params):
     :param conn_params: the db connection params set in settings
     :return:
     '''
-    print('file db:',conn_params)
+    # print('file db:',conn_params)
     #db_path ='%s/%s' %(conn_params['path'],conn_params['name'])
     return file_execute
 
@@ -23,18 +23,19 @@ def db_handler():
     :return:a
     '''
     conn_params = settings.DATABASE
+    print("conn_params_f",conn_params)
     if conn_params['engine'] == 'file_storage':
+
         return file_db_handle(conn_params)
     elif conn_params['engine'] == 'mysql':
         pass #todo
 
-
-
 def file_execute(sql,**kwargs):
     conn_params = settings.DATABASE
     db_path = '%s/%s' % (conn_params['path'], conn_params['name'])
-
+    print('sql_f:',sql)
     print(sql,db_path)
+
     sql_list = sql.split("where")
     print(sql_list)
     if sql_list[0].startswith("select") and len(sql_list)> 1:#has where clause

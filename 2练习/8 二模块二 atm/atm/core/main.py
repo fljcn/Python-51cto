@@ -22,7 +22,7 @@ access_logger = logger.logger('access')
 
 #temp account data ,only saves the data in memory
 user_data = {
-    'account_id':None,
+    'account_id':None,    #=account
     'is_authenticated':False,
     'account_data':None
 
@@ -130,4 +130,5 @@ def run():
     acc_data = auth.acc_login(user_data,access_logger)
     if user_data['is_authenticated']:
         user_data['account_data'] = acc_data
+        print('acc_data_f:',acc_data)
         interactive(user_data)
