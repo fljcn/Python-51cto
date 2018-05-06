@@ -130,5 +130,10 @@ def run():
     acc_data = auth.acc_login(user_data,access_logger)
     if user_data['is_authenticated']:
         user_data['account_data'] = acc_data
+<<<<<<< Updated upstream
         print('acc_data_f:',acc_data)
         interactive(user_data)
+=======
+        print('user_data_f:', user_data)
+        interactive(user_data)
+>>>>>>> Stashed changes

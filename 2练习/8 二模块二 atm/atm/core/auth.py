@@ -54,8 +54,15 @@ def acc_auth2(account,password):
     :return: if passed the authentication , retun the account object, otherwise ,return None
 
     '''
+<<<<<<< Updated upstream
     db_api = db_handler.db_handler()    #连接数据库
     data = db_api("select * from accounts where account=%s" % account)  #执行sql
+=======
+    db_api = db_handler.db_handler()
+    print('db_api:',db_api)
+    data = db_api("select * from accounts where account=%s" % account)
+    print('data_f1:', data)
+>>>>>>> Stashed changes
 
 
     if data['password'] == password:
@@ -63,11 +70,12 @@ def acc_auth2(account,password):
         if time.time() > exp_time_stamp:
             print("\033[31;1mAccount [%s] has expired,please contact the back to get a new card!\033[0m" % account)
         else:  # passed the authentication
+
             return data
     else:
         print("\033[31;1mAccount ID or password is incorrect!\033[0m")
 
-def acc_login(user_data,log_obj):
+def acc_login(user_data11,log_obj):
     '''
     account login func
     :user_data: user info data , only saves in memory
