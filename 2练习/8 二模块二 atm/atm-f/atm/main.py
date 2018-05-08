@@ -34,7 +34,7 @@ def entrance():
     """ATM程序交互入口"""
 
     user_obj = {
-        'is_authenticated':False #用户是否已认证
+        'is_authenticated':False,  # 用户是否已认证
         'data':None
     }
 
