@@ -3,8 +3,9 @@
 # __author__ = Feng
 
 
+
 if __name__ == '__main__':
-    for atm import main
+    from atm import main
     main.entrance() #入口entry point
 
 

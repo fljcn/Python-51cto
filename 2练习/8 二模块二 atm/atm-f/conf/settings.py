@@ -14,11 +14,12 @@ DB_PATH = "%s/db/account" % BASE_DIR
 
 
 LOG_LEVEL = logging.INFO
+#对应日志文件
 LOG_TYPES = {
     'transaction': 'transactions.log',
     'access': 'access.log',
 }
-LOG_PATH = os.path.join(BASE_DIR,'logs')
+LOG_PATH = os.path.join(BASE_DIR,'logs')   ##结合目录名
 
 LOG_FORMAT = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 TRANSACTION_TYPE = {
